@@ -1,7 +1,9 @@
 import '../style/Titles.css';
+// import '../style/App.css';
 import TitleCard from './TitleCard.js';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const Titles = ({ updatePage, setListOfReviews, listOfTitles }) => {
+const Titles = ({ updatePage, setListOfReviews, listOfTitles, queryData }) => {
   // const displayReviews = async (url) => {
   //   try {
   //     updatePage("loading")
@@ -21,26 +23,36 @@ const Titles = ({ updatePage, setListOfReviews, listOfTitles }) => {
   //     console.error('Error sending data to server:', error);
   //   }
   // };
+    console.log(queryData);
     return (
-      <div>
-        <button onClick={() => updatePage("query")}>Back</button>
+      <div className='titles-body'>
+        <ArrowBackIcon sx={{width:"90px", height:"90px"}} onClick={() => updatePage("query")} className="titles-back" />
+        <br/>
+        <div className='text-1-results-for'>Showing results for...</div>
+        <br/><br/>
+        <div className='text-2-results'>"{queryData}"</div>
+        <br/><br/><br/>
+        <div className="title-card-container">
+          {listOfTitles.map((titleObj, index) => (
+            <>
+            <TitleCard
+              updatePage={updatePage}
+              setListOfReviews={setListOfReviews}
+              name={titleObj.title}
+              tags={titleObj.tag}
+              actors={titleObj.actorsList}
+              imageUrl={titleObj.image}
+              linkUrl={titleObj.urlForThatTitle}
+            />
+            </>
+          ))}
+        </div>
         {listOfTitles.length === 0
           ? <>
               no results movies/tvshows found
             </>
           : <></>
         }
-        {listOfTitles.map((titleObj, index) => (
-          <TitleCard
-            updatePage={updatePage}
-            setListOfReviews={setListOfReviews}
-            name={titleObj.title}
-            tags={titleObj.tag}
-            actors={titleObj.actorsList}
-            imageUrl={titleObj.image}
-            linkUrl={titleObj.urlForThatTitle}
-          />
-        ))}
       </div>
     )
 

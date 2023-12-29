@@ -1,8 +1,10 @@
 /* Search bar style */
-*{
+/* *{
   box-sizing: border-box;
-}
-.body {
+} */
+
+
+.query-body {
   margin: 0px;
   padding: 0px;
   width: 100vw;
@@ -14,6 +16,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Lato';
+  text-align: center;
+
 }
 .search-box{
   position: absolute;
@@ -34,6 +38,7 @@
   color: #404040;
   font-weight: bold;
   box-shadow: 2px 1px 4px black;
+  box-sizing: border-box;
 }
 .input-search::placeholder{
   color: #666666;

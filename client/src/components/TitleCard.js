@@ -1,4 +1,6 @@
-
+import '../style/Titles.css';
+import defaultMovieLogo from '../images/deafult_movie.png';
+// import '../style/App.css';
 
 const TitleCard = ({updatePage, setListOfReviews, name, tags, actors, imageUrl, linkUrl}) => {
   const displayReviews = async (url) => {
@@ -20,17 +22,29 @@ const TitleCard = ({updatePage, setListOfReviews, name, tags, actors, imageUrl, 
       console.error('Error sending data to server:', error);
     }
   }
-
+  console.log(imageUrl);
   return (
-    <div>
-      <p>Title: {name}</p>
-      <p>tag: {tags}</p>
-      <p>actors:</p>
-      {actors.map((actorName, index) => (
-        <p>{actorName}</p>
-      ))}
-      <img className="movie" alt="title" src={imageUrl}/>
-      <button onClick={() => displayReviews(linkUrl)}>urlForThatTitle: {linkUrl}</button>
+    <div className="title-card" onClick={() => displayReviews(linkUrl)}>
+      <div className='title-card-inner'>
+        <div className="title-card-front">
+          {imageUrl !== "none"
+            ? <img className="movie" alt="title" src={imageUrl}/>
+            :  <img className="movie" alt="title" src={defaultMovieLogo}/>
+
+          }
+          <div className='title-card-text'>
+            <p className='title-card-name'> {name}</p>
+            <p className='title-card-tag'> {tags}</p>
+            <br/>
+            {actors.map((actorName, index) => (
+              <p className='title-card-actor'>{actorName}</p>
+            ))}
+          </div>
+        </div>
+        <div class="title-card-back">
+          <div className="title-card-back-text">Click Here to See Reviews!!!</div>
+        </div>
+      </div>
     </div>
   )
 }

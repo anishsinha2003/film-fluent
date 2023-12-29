@@ -3,7 +3,7 @@ import '../style/Query.css'
 import SearchIcon from '@mui/icons-material/Search';
 import logo from '../images/logo.png'
 
-const Query = ({ updatePage, setListOfTitles }) => {
+const Query = ({ updatePage, setListOfTitles, setQueryData }) => {
     const [inputData, setInputData] = useState('');
 
     const sendDataToServer = async () => {
@@ -22,6 +22,7 @@ const Query = ({ updatePage, setListOfTitles }) => {
         });
         const responseData = await response.json();
         setListOfTitles(responseData.titles);
+        setQueryData(inputData);
         updatePage("titles")
 
 
@@ -43,7 +44,7 @@ const Query = ({ updatePage, setListOfTitles }) => {
     };
 
     return (
-      <div className='body'>
+      <div className='query-body'>
         <div class="search-box">
           <button onClick={handleSearch} onEnter class="btn-search"><SearchIcon/></button>
           <input

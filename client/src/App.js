@@ -9,15 +9,16 @@ import Loading from './components/Loading';
 function App() {
 
   const [listOfTitlesFromQuery, setListOfTitlesFromQuery] = useState([]);
+  const [queryDate, setQueryData] = useState("");
   const [listOfReviews, setListOfReviews] = useState([]);
   const [showPage, setShowPage] = useState("query");
   console.log("PASS LIS", listOfReviews);
   return (
-    <div className="App">
+    <div>
       {(showPage === "query")
-        ? <Query updatePage={setShowPage} setListOfTitles={setListOfTitlesFromQuery}/>
+        ? <Query updatePage={setShowPage} setListOfTitles={setListOfTitlesFromQuery} setQueryData={setQueryData}/>
         : showPage === "titles" ?
-          <Titles listOfTitles={listOfTitlesFromQuery} updatePage={setShowPage} setListOfReviews={setListOfReviews}/>
+          <Titles listOfTitles={listOfTitlesFromQuery} updatePage={setShowPage} setListOfReviews={setListOfReviews} queryData={queryDate}/>
         : showPage === "reviews" ?
           <Reviews listOfReviews={listOfReviews} updatePage={setShowPage}/>
         : showPage === "error" ?
