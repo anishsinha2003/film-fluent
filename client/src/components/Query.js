@@ -9,7 +9,8 @@ const Query = ({ updatePage, setListOfTitles, setQueryData }) => {
     const sendDataToServer = async () => {
       try {
         updatePage("loading")
-        const response = await fetch('http://127.0.0.1:5000/get/titles', {
+        // const response = await fetch('http://127.0.0.1:5000/get/titles', {
+        const response = await fetch('https://film-fluent-9ccdc5cd6b75.herokuapp.com//get/titles', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
