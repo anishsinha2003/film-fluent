@@ -9,11 +9,7 @@ const Query = ({ updatePage, setListOfTitles, setQueryData }) => {
     const sendDataToServer = async () => {
       try {
         updatePage("loading")
-        // const response2 = await fetch('http://127.0.0.1:5000/reviews', {
-        //   method: 'GET',
-        //   mode: 'no-cors',
-        // });
-        const response = await fetch('http://127.0.0.1:5000/reviews/get', {
+        const response = await fetch('http://127.0.0.1:5000/get/titles', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -73,5 +69,3 @@ const Query = ({ updatePage, setListOfTitles, setQueryData }) => {
 
 }
 export default Query;
-
-// onBlur={() => setIsSearchExpanded(false)}

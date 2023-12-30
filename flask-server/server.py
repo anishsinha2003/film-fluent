@@ -8,13 +8,7 @@ app = Flask("__name__")
 CORS(app)
 
 #routes
-@app.route("/reviews")
-def members():
-    return {
-        "members": ["mem1", "mem2", "mem3", "mem4"]
-    }
-
-@app.route("/reviews/get", methods=['POST'])
+@app.route("/get/titles", methods=['POST'])
 def receive_data():
     # movie/tv show name gotten from the frontend
     query = request.get_json()
@@ -78,7 +72,7 @@ def receive_data():
     return jsonify({'titles': listOfTitesDict})
 
 
-@app.route("/display/reviews", methods=['POST'])
+@app.route("/get/reviews", methods=['POST'])
 def get_reviews():
     hrefUrl = request.get_json()
     # mimicking user agent
@@ -96,6 +90,8 @@ def get_reviews():
             rating = allReviews[i].find("div", attrs={"class": "ipl-ratings-bar"})
             if rating:
                 rating = rating.text.strip()
+                parts = rating.split("/")
+                rating = int(parts[0])
             else:
                 rating = "None"
 
@@ -112,6 +108,7 @@ def get_reviews():
                 content = "None"
 
             newReviewInfo = {}
+
             newReviewInfo["rating"] = rating
             newReviewInfo["name_date"] = name_date
             newReviewInfo["content"] = content

@@ -1,12 +1,12 @@
 import '../style/Titles.css';
 import defaultMovieLogo from '../images/deafult_movie.png';
-// import '../style/App.css';
 
-const TitleCard = ({updatePage, setListOfReviews, name, tags, actors, imageUrl, linkUrl}) => {
+const TitleCard = ({updatePage, setListOfReviews, setTitleData, name, tags, actors, imageUrl, linkUrl}) => {
   const displayReviews = async (url) => {
+    setTitleData(name);
     try {
       updatePage("loading")
-      const response = await fetch('http://127.0.0.1:5000/display/reviews', {
+      const response = await fetch('http://127.0.0.1:5000/get/reviews', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const TitleCard = ({updatePage, setListOfReviews, name, tags, actors, imageUrl, 
       console.error('Error sending data to server:', error);
     }
   }
-  console.log(imageUrl);
+
   return (
     <div className="title-card" onClick={() => displayReviews(linkUrl)}>
       <div className='title-card-inner'>
